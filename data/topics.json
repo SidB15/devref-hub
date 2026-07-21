@@ -1,0 +1,25 @@
+{
+  "published": [
+    "cron-expression-cheat-sheet",
+    "regex-email-validation",
+    "http-status-codes-reference",
+    "git-rebase-vs-merge",
+    "semantic-versioning-explained",
+    "put-vs-patch-vs-post"
+  ],
+  "queue": [
+    { "slug": "json-vs-yaml", "title": "JSON vs YAML: When to Use Which" },
+    { "slug": "linux-exit-codes-reference", "title": "Common Linux Exit Codes Reference" },
+    { "slug": "bash-vs-powershell-cheat-sheet", "title": "Bash vs PowerShell: A Side-by-Side Cheat Sheet" },
+    { "slug": "gitignore-guide", "title": "How to Write a .gitignore File (With Common Templates)" },
+    { "slug": "utc-vs-timezone-handling", "title": "Why You Should Store Timestamps in UTC" },
+    { "slug": "sql-join-types-explained", "title": "SQL JOIN Types Explained: INNER, LEFT, RIGHT, FULL" },
+    { "slug": "docker-vs-vm", "title": "Docker Containers vs Virtual Machines: What's Actually Different" },
+    { "slug": "async-await-vs-promises", "title": "Async/Await vs Promises in JavaScript" },
+    { "slug": "http-vs-https", "title": "HTTP vs HTTPS: What TLS Actually Protects" },
+    { "slug": "npm-vs-yarn-vs-pnpm", "title": "npm vs Yarn vs pnpm: Practical Differences" },
+    { "slug": "environment-variables-best-practices", "title": "Environment Variables: Best Practices for Config and Secrets" },
+    { "slug": "rest-vs-graphql", "title": "REST vs GraphQL: Choosing an API Style" }
+  ],
+  "notes": "Each queue entry becomes one article per scheduled content run. Keep topics technical/reference-style (low YMYL risk, evergreen search volume, verifiable accuracy) — avoid financial, medical, or legal advice topics."
+}
