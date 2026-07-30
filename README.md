@@ -6,6 +6,11 @@ it to static HTML in `dist/`, and new articles get added by pulling the next ent
 `data/topics.json`'s `queue` and writing a new article JSON file — a task a scheduled agent run can do
 on its own with no human involvement.
 
+## Content types
+
+- **Reference/cheat-sheet articles** — `data/topics.json` tracks published vs. queued topics.
+- **Integration guides** ("Connect X to Y") — `data/integration-queue.json` tracks published vs. queued pairs, `data/tools.json` is the tool registry. Same generator, same JSON article format in `content/articles/`; each guide should cover a native option (if one exists), Zapier/Make, and a raw API/webhook approach. Verify actual integration capabilities before writing — don't assume a native integration exists.
+
 ## Build locally
 
 ```

@@ -1,0 +1,24 @@
+{
+  "published": [
+    "connect-slack-to-notion",
+    "connect-google-sheets-to-slack",
+    "connect-trello-to-google-calendar",
+    "connect-github-to-slack",
+    "connect-stripe-to-airtable"
+  ],
+  "queue": [
+    { "slug": "connect-hubspot-to-slack", "title": "How to Connect HubSpot to Slack" },
+    { "slug": "connect-shopify-to-google-sheets", "title": "How to Connect Shopify to Google Sheets" },
+    { "slug": "connect-calendly-to-google-calendar", "title": "How to Connect Calendly to Google Calendar" },
+    { "slug": "connect-typeform-to-slack", "title": "How to Connect Typeform to Slack" },
+    { "slug": "connect-mailchimp-to-google-sheets", "title": "How to Connect Mailchimp to Google Sheets" },
+    { "slug": "connect-asana-to-slack", "title": "How to Connect Asana to Slack" },
+    { "slug": "connect-zoom-to-google-calendar", "title": "How to Connect Zoom to Google Calendar" },
+    { "slug": "connect-jira-to-slack", "title": "How to Connect Jira to Slack" },
+    { "slug": "connect-salesforce-to-slack", "title": "How to Connect Salesforce to Slack" },
+    { "slug": "connect-airtable-to-slack", "title": "How to Connect Airtable to Slack" },
+    { "slug": "connect-notion-to-google-calendar", "title": "How to Connect Notion to Google Calendar" },
+    { "slug": "connect-discord-to-github", "title": "How to Connect Discord to GitHub" }
+  ],
+  "notes": "Integration/'connect X to Y' guides — the Zapier/Make programmatic-SEO pattern. Each article should cover: (1) a native/built-in option if one exists, (2) Zapier or Make as the no-code route, (3) a raw API/webhook approach for developers. Verify each tool's actual integration capabilities before writing — don't assume a native integration exists; several of these pairs (e.g. Stripe+Airtable) have none, and that's fine to say. Keep it factually accurate over padding length."
+}
