@@ -15,6 +15,11 @@ function loadArticles() {
     .map((f) => JSON.parse(readFileSync(join(articlesDir, f), "utf8")));
 }
 
+function loadTools() {
+  const { tools } = JSON.parse(readFileSync(join(root, "data", "tools.json"), "utf8"));
+  return Object.fromEntries(tools.map((t) => [t.slug, t]));
+}
+
 function writeFile(path, content) {
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, content, "utf8");
@@ -23,9 +28,10 @@ function writeFile(path, content) {
 function build() {
   rmSync(distDir, { recursive: true, force: true });
   const articles = loadArticles();
+  const tools = loadTools();
 
   for (const article of articles) {
-    writeFile(join(distDir, article.slug, "index.html"), renderArticle(article));
+    writeFile(join(distDir, article.slug, "index.html"), renderArticle(article, tools));
   }
   writeFile(join(distDir, "index.html"), renderIndex(articles));
 

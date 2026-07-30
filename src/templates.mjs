@@ -19,6 +19,8 @@ const baseStyles = `
   .article-list a { text-decoration: none; font-weight: 600; }
   .article-list p { margin: .25rem 0 0; opacity: .75; font-size: .9rem; }
   .ad-slot { margin: 2rem 0; padding: 1rem; border: 1px dashed #8886; text-align: center; font-size: .8rem; opacity: .5; }
+  .tool-links { display: flex; gap: .75rem; flex-wrap: wrap; margin: 2rem 0; }
+  .tool-links a { border: 1px solid #8884; border-radius: 6px; padding: .5rem 1rem; text-decoration: none; font-size: .9rem; font-weight: 600; }
   footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #8883; font-size: .8rem; opacity: .6; }
 `;
 
@@ -49,12 +51,28 @@ ${body}
 </html>`;
 }
 
-export function renderArticle(article) {
+function renderToolLinks(article, tools) {
+  if (!article.tools?.length) return "";
+  const links = article.tools
+    .map((slug) => tools[slug])
+    .filter(Boolean)
+    .map((tool) => {
+      const isAffiliate = Boolean(tool.affiliateUrl);
+      const href = tool.affiliateUrl || tool.homepage;
+      const rel = isAffiliate ? "sponsored noopener" : "noopener";
+      return `<a href="${href}" rel="${rel}" target="_blank">Visit ${tool.name} &rarr;</a>`;
+    })
+    .join("\n");
+  return links ? `<div class="tool-links">\n${links}\n</div>` : "";
+}
+
+export function renderArticle(article, tools = {}) {
   const canonical = `${site.baseUrl}/${article.slug}/`;
   const body = `
 <h1>${article.title}</h1>
 <p class="meta">Updated ${article.publishDate}</p>
 ${article.bodyHtml}
+${renderToolLinks(article, tools)}
 `;
   return layout({
     title: `${article.title} | ${site.name}`,
