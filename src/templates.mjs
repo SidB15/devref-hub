@@ -1,27 +1,99 @@
 import { site } from "./config.mjs";
 
 const baseStyles = `
-  :root { color-scheme: light dark; }
-  body { font: 16px/1.6 -apple-system, Segoe UI, Roboto, sans-serif; max-width: 760px; margin: 0 auto; padding: 0 1.25rem 3rem; }
-  header { padding: 1.5rem 0 1rem; border-bottom: 1px solid #8883; margin-bottom: 1.5rem; }
-  header a { text-decoration: none; color: inherit; }
-  header h1 { font-size: 1.25rem; margin: 0; }
-  header p { margin: .25rem 0 0; opacity: .7; font-size: .9rem; }
-  main h1 { font-size: 1.75rem; margin-bottom: .25rem; }
-  .meta { opacity: .6; font-size: .85rem; margin-bottom: 1.5rem; }
-  pre { background: #8881; padding: .75rem 1rem; overflow-x: auto; border-radius: 6px; }
-  code { background: #8881; padding: .1rem .3rem; border-radius: 4px; font-size: .9em; }
-  pre code { background: none; padding: 0; }
-  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
-  th, td { border: 1px solid #8884; padding: .4rem .6rem; text-align: left; font-size: .95rem; }
-  .article-list { list-style: none; padding: 0; }
-  .article-list li { padding: .75rem 0; border-bottom: 1px solid #8882; }
-  .article-list a { text-decoration: none; font-weight: 600; }
-  .article-list p { margin: .25rem 0 0; opacity: .75; font-size: .9rem; }
-  .ad-slot { margin: 2rem 0; padding: 1rem; border: 1px dashed #8886; text-align: center; font-size: .8rem; opacity: .5; }
-  .tool-links { display: flex; gap: .75rem; flex-wrap: wrap; margin: 2rem 0; }
-  .tool-links a { border: 1px solid #8884; border-radius: 6px; padding: .5rem 1rem; text-decoration: none; font-size: .9rem; font-weight: 600; }
-  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #8883; font-size: .8rem; opacity: .6; }
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #16181d;
+    --muted: #62687a;
+    --border: #e3e5ea;
+    --surface: #f6f7f9;
+    --accent: #4338ca;
+    --accent-fg: #ffffff;
+    --code-bg: #f3f3f7;
+    --shadow: 0 1px 2px rgba(20,20,30,.04), 0 8px 24px rgba(20,20,30,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c0d11;
+      --fg: #e7e8ec;
+      --muted: #9296a3;
+      --border: #24262e;
+      --surface: #15161c;
+      --accent: #8b85f5;
+      --accent-fg: #0c0d11;
+      --code-bg: #17181f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 16px/1.65 -apple-system, "Segoe UI", Roboto, sans-serif;
+    max-width: 760px; margin: 0 auto; padding: 0 1.25rem 4rem;
+    background: var(--bg); color: var(--fg);
+  }
+  a { color: var(--accent); }
+  header { display: flex; align-items: center; gap: .75rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+  header a.brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; color: inherit; }
+  .logo-mark {
+    width: 2rem; height: 2rem; border-radius: 8px; flex: none;
+    background: linear-gradient(135deg, var(--accent), #9089f0);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: .95rem;
+  }
+  header h1 { font-size: 1.15rem; margin: 0; letter-spacing: -.01em; }
+  header p { margin: .1rem 0 0; color: var(--muted); font-size: .85rem; }
+  main h1 { font-size: 1.85rem; margin-bottom: .3rem; letter-spacing: -.015em; line-height: 1.25; }
+  main h2 { font-size: 1.25rem; margin-top: 2.25rem; letter-spacing: -.01em; }
+  .meta { color: var(--muted); font-size: .85rem; margin-bottom: 2rem; }
+  p { color: var(--fg); }
+  ul, ol { padding-left: 1.25rem; }
+  li { margin: .3rem 0; }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border);
+    padding: .9rem 1rem; overflow-x: auto; border-radius: 8px; font-size: .85rem;
+  }
+  code {
+    background: var(--code-bg); border: 1px solid var(--border);
+    padding: .1rem .35rem; border-radius: 4px; font-size: .85em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  pre code { background: none; border: none; padding: 0; }
+  table {
+    border-collapse: separate; border-spacing: 0; width: 100%; margin: 1.25rem 0;
+    border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: .9rem;
+  }
+  th, td { padding: .55rem .75rem; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--surface); font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--surface); }
+  .article-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .75rem; }
+  .article-list li {
+    border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.15rem;
+    transition: box-shadow .15s ease, border-color .15s ease;
+  }
+  .article-list li:hover { box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+  .article-list a { text-decoration: none; font-weight: 600; color: var(--fg); }
+  .article-list a:hover { color: var(--accent); }
+  .article-list p { margin: .35rem 0 0; color: var(--muted); font-size: .9rem; }
+  .badge {
+    display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .02em;
+    text-transform: uppercase; padding: .15rem .5rem; border-radius: 999px;
+    background: var(--surface); color: var(--muted); border: 1px solid var(--border);
+    margin-bottom: .5rem;
+  }
+  .ad-slot {
+    margin: 2.5rem 0; padding: 1rem; border: 1px dashed var(--border);
+    text-align: center; font-size: .8rem; color: var(--muted); border-radius: 8px;
+  }
+  .tool-links { display: flex; gap: .75rem; flex-wrap: wrap; margin: 2.5rem 0; }
+  .tool-links a {
+    background: var(--accent); color: var(--accent-fg); border-radius: 999px;
+    padding: .55rem 1.15rem; text-decoration: none; font-size: .9rem; font-weight: 600;
+    transition: opacity .15s ease;
+  }
+  .tool-links a:hover { opacity: .85; }
+  footer { margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: .8rem; color: var(--muted); }
 `;
 
 function layout({ title, description, canonical, body }) {
@@ -40,7 +112,10 @@ function layout({ title, description, canonical, body }) {
 </head>
 <body>
 <header>
-  <a href="/"><h1>${site.name}</h1><p>${site.tagline}</p></a>
+  <a href="/" class="brand">
+    <span class="logo-mark">${site.name.charAt(0)}</span>
+    <span><h1>${site.name}</h1><p>${site.tagline}</p></span>
+  </a>
 </header>
 <main>
 ${body}
@@ -86,9 +161,10 @@ export function renderIndex(articles) {
   const items = articles
     .slice()
     .sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1))
-    .map(
-      (a) => `<li><a href="/${a.slug}/">${a.title}</a><p>${a.description}</p></li>`
-    )
+    .map((a) => {
+      const badge = a.tools?.length ? "Integration Guide" : "Reference";
+      return `<li><span class="badge">${badge}</span><br><a href="/${a.slug}/">${a.title}</a><p>${a.description}</p></li>`;
+    })
     .join("\n");
   const body = `
 <h1>Latest reference pages</h1>
